@@ -5,6 +5,10 @@ import { UsersModule } from './users/users.module';
 import { OrderModule } from './order/order.module';
 import { PaymentModule } from './payment/payment.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { OrderTypeModule } from './order_type/order_type.module';
+import { OrderStateModule } from './order_state/order_state.module';
+import { PaymentTypeModule } from './payment_type/payment_type.module';
+import { PaymentStateModule } from './payment_state/payment_state.module';
 
 
 
@@ -25,7 +29,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
     UsersModule, 
     OrderModule, 
-    PaymentModule],
+    PaymentModule, OrderTypeModule, OrderStateModule, PaymentTypeModule, PaymentStateModule],
   controllers: [AppController],
   providers: [AppService],
 })
