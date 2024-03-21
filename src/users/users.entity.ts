@@ -49,5 +49,8 @@ export class User {
     @Column({nullable: true})
     authProvider: string
 
+    @Column({default: true})
+    isActive: boolean
+
 }
 
