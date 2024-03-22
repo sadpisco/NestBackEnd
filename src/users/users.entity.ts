@@ -1,11 +1,13 @@
+import { UUID } from "crypto";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { v4 as uuidv4 } from "uuid";
 
 @Entity()
 
 export class User {
 
-    @PrimaryGeneratedColumn()
-    id: number
+    @PrimaryGeneratedColumn("uuid") // Use "uuid" type for primary key
+    id: UUID; // Change type to string
 
     @Column({ unique: true})
     username: string
@@ -26,7 +28,7 @@ export class User {
     dni: number
 
     @Column({nullable: true})
-    number: number
+    numero: number
 
     @Column({nullable: true})
     email: string

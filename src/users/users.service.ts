@@ -4,6 +4,7 @@ import { User } from './users.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UpdateUserDto } from './dto/updateUser.dto';
+import { UUID } from 'crypto';
 
 @Injectable()
 export class UsersService {
@@ -27,7 +28,7 @@ export class UsersService {
         return this.userRepository.find();
     }
 
-    async getUser(id: number){
+    async getUser(id: UUID){
         const userFound = await this.userRepository.findOne({
             where:{
                 id: id
@@ -41,7 +42,7 @@ export class UsersService {
         }
     }
 
-    async deleteUser(id: number){
+    async deleteUser(id: UUID){
         const result = await this.userRepository.findOne({
             where:{
                 id: id
@@ -54,7 +55,7 @@ export class UsersService {
         }
     }
 
-    async updateUser(id: number, user: UpdateUserDto ){
+    async updateUser(id: UUID, user: UpdateUserDto ){
         const userBuscado = await this.userRepository.findOne({
             where: {
                 id: id

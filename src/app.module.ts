@@ -9,6 +9,16 @@ import { OrderTypeModule } from './order_type/order_type.module';
 import { OrderStateModule } from './order_state/order_state.module';
 import { PaymentTypeModule } from './payment_type/payment_type.module';
 import { PaymentStateModule } from './payment_state/payment_state.module';
+import { CustomerModule } from './customer/customer.module';
+import { PlatilloModule } from './platillo/platillo.module';
+import { ProductModule } from './product/product.module';
+import { PurchaseModule } from './purchase/purchase.module';
+import { IngredientModule } from './ingredient/ingredient.module';
+import { RecipeModule } from './recipe/recipe.module';
+import { SupplierModule } from './supplier/supplier.module';
+import { LocationModule } from './location/location.module';
+import { CityModule } from './city/city.module';
+import { LocationNoSpecService } from './location--no-spec/location--no-spec.service';
 
 
 
@@ -29,8 +39,8 @@ import { PaymentStateModule } from './payment_state/payment_state.module';
     }),
     UsersModule, 
     OrderModule, 
-    PaymentModule, OrderTypeModule, OrderStateModule, PaymentTypeModule, PaymentStateModule],
+    PaymentModule, OrderTypeModule, OrderStateModule, PaymentTypeModule, PaymentStateModule, CustomerModule, PlatilloModule, ProductModule, PurchaseModule, IngredientModule, RecipeModule, SupplierModule, LocationModule, CityModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, LocationNoSpecService],
 })
 export class AppModule {}
