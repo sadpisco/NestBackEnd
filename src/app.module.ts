@@ -18,7 +18,6 @@ import { RecipeModule } from './recipe/recipe.module';
 import { SupplierModule } from './supplier/supplier.module';
 import { LocationModule } from './location/location.module';
 import { CityModule } from './city/city.module';
-import { LocationNoSpecService } from './location--no-spec/location--no-spec.service';
 
 
 
@@ -41,6 +40,6 @@ import { LocationNoSpecService } from './location--no-spec/location--no-spec.ser
     OrderModule, 
     PaymentModule, OrderTypeModule, OrderStateModule, PaymentTypeModule, PaymentStateModule, CustomerModule, PlatilloModule, ProductModule, PurchaseModule, IngredientModule, RecipeModule, SupplierModule, LocationModule, CityModule],
   controllers: [AppController],
-  providers: [AppService, LocationNoSpecService],
+  providers: [AppService],
 })
 export class AppModule {}
