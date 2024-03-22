@@ -19,4 +19,7 @@ export class Platillo{
 
     @Column()
     imagen: string
+
+    @Column()
+    isActive: boolean
 }
