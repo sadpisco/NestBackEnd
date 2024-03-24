@@ -20,6 +20,9 @@ export class Supplier {
     @Column()
     email:string
 
+    @Column()
+    direccion: string
+
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
     createdat: Date
 

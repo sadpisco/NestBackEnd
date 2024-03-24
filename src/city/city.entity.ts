@@ -5,15 +5,15 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 export class City{
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("uuid")
     id: UUID
 
-    @Column()
+    @Column({ unique: true})
     name: string
 
-    @Column()
+    @Column({nullable: true})
     description: string
 
-    @Column()
+    @Column({nullable: true})
     departamento: string
 }

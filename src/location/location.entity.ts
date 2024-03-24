@@ -1,5 +1,6 @@
 import { UUID } from "crypto";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
+import { Supplier } from "src/supplier/supplier.entity";
 
 @Entity()
 
