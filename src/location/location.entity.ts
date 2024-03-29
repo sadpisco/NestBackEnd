@@ -9,13 +9,13 @@ export class Location{
     @PrimaryGeneratedColumn("uuid")
     id: UUID
 
-    @Column()
+    @Column({ unique: true})
     name:string
 
-    @Column()
+    @Column({nullable: true})
     description:string
 
-    @Column()
+    @Column({default: 'https://static.vecteezy.com/system/resources/previews/006/711/127/non_2x/location-not-found-icon-gps-with-question-mark-sign-symbol-vector.jpg'})
     image:string
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
