@@ -5,13 +5,23 @@ import { UUID } from 'crypto';
 import { Repository } from 'typeorm';
 import { CreateSupplierDto } from './dto/CreateSupplier.dto';
 import { UpdateSupplierDto } from './dto/UpdateSupplier.dto';
+import { LocationService } from 'src/location/location.service';
 
 
 @Injectable()
 export class SupplierService {
-    constructor(@InjectRepository(Supplier) private supplierRepository: Repository <Supplier>){}
+    constructor(
+        @InjectRepository(Supplier) private supplierRepository: Repository <Supplier>,
+        private LocationService: LocationService
+
+        ){}
 
     async createSupplier(supplier: CreateSupplierDto){
+        const verifyLocation = await this.LocationService.getLocation(supplier.locationId);
+
+        if(!verifyLocation){
+            return new HttpException(`La location en la que intentas crear un supplier no existe.`, 400);
+        }
         const foundSupplier = await this.supplierRepository.findOne({
             where: {
                 name: supplier.name
@@ -27,7 +37,9 @@ export class SupplierService {
     };
 
     getSuppliers(){
-        return this.supplierRepository.find();
+        return this.supplierRepository.find({
+            relations: ['location']
+        });
     }
 
     async deleteSupplier(id : UUID){
@@ -47,7 +59,8 @@ export class SupplierService {
         const supplierFound = this.supplierRepository.findOne({
             where: {
                 id: id
-            }
+            },
+            relations: ['location']
         });
         if (supplierFound){
             return supplierFound;
