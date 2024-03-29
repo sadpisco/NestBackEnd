@@ -11,16 +11,16 @@ export class Supplier {
     @Column()
     name:string
 
-    @Column()
+    @Column({ nullable: true})
     description:string
 
-    @Column()
+    @Column({ nullable: true})
     number: number
 
-    @Column()
+    @Column({ nullable: true})
     email:string
 
-    @Column()
+    @Column({ nullable: true})
     direccion: string
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})

@@ -17,13 +17,13 @@ export class LocationController {
     @Get()
     getLocations(): Promise <Location[]>{
         return this.locationService.getLocations();
-    }
+    };
 
-    @Delete('id')
+    @Delete(':id')
     deleteLocation(@Param('id', ParseUUIDPipe) id: UUID){
-        return this. locationService.deleteLocation(id);
+        return this.locationService.deleteLocation(id);
 
-    }
+    };
 
     @Get(':id')
     getLocation(@Param('id', ParseUUIDPipe) id: UUID){

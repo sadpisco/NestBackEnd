@@ -49,7 +49,7 @@ export class LocationService {
         })
 
         if (!result){
-            return new HttpException(`Location a borrar no encontrada`, 400)
+            return new HttpException(`Location a borrar no encontrada.`, 400)
         } else {
             return await this.locationRepository.delete({id: id});
         }
@@ -66,7 +66,7 @@ export class LocationService {
         if(locationFound){
             return locationFound
         } else {
-            return new HttpException('Location no encontrada', 400);
+            return new HttpException('Location no encontrada.', 400);
         }
     };
 
@@ -80,8 +80,10 @@ export class LocationService {
         });
 
         if(!locationBuscada){
-            return new HttpException(`Location a Actualizar no encontrada`, 400)
-        };
+            return new HttpException(`Location a Actualizar no encontrada.`, 400)
+        } else {
+            return this.locationRepository.update({id}, location);
+        }
 
     };
 
