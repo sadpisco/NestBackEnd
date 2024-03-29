@@ -1,5 +1,6 @@
 import { UUID } from "crypto";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Location } from "src/location/location.entity";
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 
 @Entity()
 
@@ -16,4 +17,7 @@ export class City{
 
     @Column({nullable: true})
     departamento: string
+
+    @OneToMany(() => Location, Location => Location.city)
+    locations: Location[]
 }

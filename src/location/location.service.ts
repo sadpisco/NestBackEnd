@@ -5,12 +5,21 @@ import { Repository } from 'typeorm';
 import { CreateLocationDto } from './dto/createLocation.dto';
 import { UpdateLocationDto } from './dto/updateLocation.dto';
 import { UUID } from 'crypto';
+import { CityService } from 'src/city/city.service';
 
 @Injectable()
 export class LocationService {
-    constructor(@InjectRepository(Location) private locationRepository: Repository <Location>){}
+    constructor(
+        @InjectRepository(Location) private locationRepository: Repository <Location>,
+        private CityService: CityService
+        ){}
     
     async createLocation(location: CreateLocationDto){
+        const verifyCity = await this.CityService.getCity(location.cityId);
+        if(!verifyCity){
+            return new HttpException(`La ciudad en de la location que intentas crear no existe.`, 400);
+        }
+
         const foundLocation = await this.locationRepository.findOne({
             where: {
                 name: location.name
@@ -27,8 +36,9 @@ export class LocationService {
     
 
     getLocations(){
-        return this.locationRepository.find();
-
+        return this.locationRepository.find({
+            relations: ['city']
+        });
     };
 
     async deleteLocation(id: UUID){

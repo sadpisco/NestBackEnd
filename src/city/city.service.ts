@@ -26,7 +26,9 @@ export class CityService {
     };
 
     getCities (){
-        return this.cityRepository.find();
+        return this.cityRepository.find({
+            relations: ['locations']
+        });
     };
 
     async deleteCity(id: UUID){
@@ -47,7 +49,9 @@ export class CityService {
         const cityFound = await this.cityRepository.findOne({
             where: {
                 id: id
-            }
+            },
+            relations: ['locations']
+
         });
 
         if(!cityFound){
