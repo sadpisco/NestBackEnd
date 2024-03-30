@@ -7,6 +7,7 @@ import { SupplierModule } from 'src/supplier/supplier.module';
 @Module({
   imports: [TypeOrmModule.forFeature([Purchase]), SupplierModule],
   controllers: [PurchaseController],
-  providers: [PurchaseService]
+  providers: [PurchaseService],
+  exports: [PurchaseService]
 })
 export class PurchaseModule {}

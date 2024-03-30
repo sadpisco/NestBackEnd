@@ -1,5 +1,6 @@
 import { UUID } from "crypto";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Supplier } from "src/supplier/supplier.entity";
 
 @Entity()
 
@@ -16,5 +17,11 @@ export class Purchase{
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
     createdat: Date
+
+    @Column()
+    supplierId: UUID
+
+    @ManyToOne(() => Supplier, supplier => supplier.purchases)
+    supplier: Supplier
 
 }

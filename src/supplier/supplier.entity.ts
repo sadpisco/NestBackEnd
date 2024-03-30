@@ -1,6 +1,7 @@
 import { UUID } from "crypto";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Location } from "src/location/location.entity";
+import { Purchase } from "src/purchase/purchase.entity";
 
 @Entity()
 
@@ -32,6 +33,9 @@ export class Supplier {
 
     @ManyToOne(() => Location, location => location.suppliers)
     location: Location
+
+    @OneToMany(() => Purchase, purchase => purchase.supplier)
+    purchases: Purchase[]
 
 
 }
