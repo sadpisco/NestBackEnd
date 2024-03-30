@@ -21,6 +21,6 @@ export class Product{
     stock: number
 
     @Column()
-    unidad: number
+    unidad: string
 
 }
