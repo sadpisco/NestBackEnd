@@ -4,20 +4,20 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 
 export class Recipe{
-    @PrimaryGeneratedColumn()
-
+    
+    @PrimaryGeneratedColumn("uuid")
     id: UUID
 
-    @Column()
+    @Column({ unique: true})
     nombre: string
 
-    @Column()
+    @Column({ nullable: true})
     imagen: string
 
-    @Column()
+    @Column({ nullable: true})
     description: string
 
-    @Column()
+    @Column({ nullable: true})
     video: string
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
