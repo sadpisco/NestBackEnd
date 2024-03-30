@@ -14,7 +14,7 @@ export class Ingredient{
     @Column()
     unidad: string
 
-    @Column()
+    @Column({ type: 'decimal', precision: 10, scale: 2 })
     precioCompra: number
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})

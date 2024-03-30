@@ -8,6 +8,6 @@ export class Payment{
     @PrimaryGeneratedColumn()
     id: UUID
 
-    @Column()
+    @Column({ type: 'decimal', precision: 10, scale: 2 })
     total: number
 }

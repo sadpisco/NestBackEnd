@@ -13,7 +13,7 @@ export class ProductService {
     ){}
 
     async createProduct(product: CreateProductDto){
-        const newProduct = this.productRepository.findOne({
+        const newProduct = await this.productRepository.findOne({
             where: {
                 nombre: product.nombre
             }
@@ -22,7 +22,7 @@ export class ProductService {
         if (newProduct){
             throw new HttpException(`Producto ya existente.`, 400);
         } else {
-            const crearProducto = await this.productRepository.create(product);
+            const crearProducto = this.productRepository.create(product);
             return this.productRepository.save(crearProducto);
         };
     };

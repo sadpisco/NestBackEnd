@@ -14,10 +14,10 @@ export class Product{
     @Column()
     marca:string
 
-    @Column()
+    @Column({ type: 'decimal', precision: 10, scale: 2 })
     precio: number
 
-    @Column()
+    @Column({ type: 'decimal', precision: 10, scale: 2 })
     stock: number
 
     @Column()
