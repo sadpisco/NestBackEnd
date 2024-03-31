@@ -5,7 +5,7 @@ import { UUID } from "crypto";
 
 export class Customer{
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("uuid")
     id: UUID
 
     @Column()
@@ -22,6 +22,9 @@ export class Customer{
 
     @Column()
     edad: number
+
+    @Column()
+    dob: Date
 
     @Column()
     correo: string
