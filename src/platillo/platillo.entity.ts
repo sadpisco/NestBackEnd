@@ -8,18 +8,18 @@ export class Platillo{
     @PrimaryGeneratedColumn("uuid")
     id: UUID
 
-    @Column()
+    @Column({ unique: true })
     nombre: string
     
     @Column()
     description: string
 
-    @Column()
+    @Column({ type: 'decimal', precision: 10, scale: 2 })
     precio: number
 
     @Column()
     imagen: string
 
-    @Column()
+    @Column({ default: true})
     isActive: boolean
 }

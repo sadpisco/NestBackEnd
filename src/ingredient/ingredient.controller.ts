@@ -9,4 +9,28 @@ import { IngredientService } from './ingredient.service';
 export class IngredientController {
     constructor(private ingredientService: IngredientService){}
 
-}
+    @Post()
+    createIngredient(@Body() newIngredient: CreateIngredientDto){
+        return this.ingredientService.createIngredient(newIngredient);
+    };
+
+    @Get()
+    getIngredients(){
+        return this.ingredientService.getIngredients();
+    };
+
+    @Get(':id')
+    getIngredient(@Param('id', ParseUUIDPipe) id: UUID){
+        return this.ingredientService.getIngredient(id);
+    };
+
+    @Delete(':id')
+    deleteIngredient(@Param('id', ParseUUIDPipe) id: UUID){
+        return this.ingredientService.deleteIngredient(id);
+    };
+
+    @Put(':id')
+    updateIngredient(@Param('id', ParseUUIDPipe) id: UUID, @Body() ingredient: UpdateIngredientDto){
+        return this.ingredientService.updateIngredient(id, ingredient);
+    };
+};
