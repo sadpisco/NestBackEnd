@@ -9,7 +9,7 @@ export class Purchase{
     @PrimaryGeneratedColumn("uuid")
     id: UUID
 
-    @Column({ type: 'decimal', precision: 10, scale: 2 })
+    @Column({ type: 'numeric', precision: 10, scale: 2 })
     total: number
 
     @Column()
@@ -18,7 +18,7 @@ export class Purchase{
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
     createdat: Date
 
-    @Column()
+    @Column({ nullable: true})
     supplierId: UUID
 
     @ManyToOne(() => Supplier, supplier => supplier.purchases)
