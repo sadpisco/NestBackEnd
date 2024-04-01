@@ -27,7 +27,6 @@ export class CityController {
     @Get(':id')
     getCity(@Param('id', ParseUUIDPipe) id: UUID){
         return this.cityService.getCity(id);
-
     };
 
     @Put(':id')

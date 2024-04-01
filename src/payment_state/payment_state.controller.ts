@@ -16,13 +16,13 @@ export class PaymentStateController {
     };
 
     @Get()
-    getPaymentStates(){
+    getPaymentStates(): Promise <Payment_State[]>{
         return this.paymentStateService.getPaymentStates();
     };
 
     @Get(':id')
     getPaymentState(@Param('id', ParseUUIDPipe) id: UUID){
-        return this.getPaymentState(id);
+        return this.paymentStateService.getPaymentState(id);
     };
 
     @Delete(':id')
