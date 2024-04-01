@@ -32,5 +32,5 @@ export class PurchaseController {
     @Put(':id')
     updatePurchase(@Param('id', ParseUUIDPipe) id: UUID, @Body() purchase: UpdatePurchaseDto){
         return this.purchaseService.updatePurchase(id, purchase);
-    }
-}
+    };
+};
