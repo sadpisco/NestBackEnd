@@ -43,6 +43,35 @@ export class OrderTypeService {
         };
     };
 
+    async deleteOrderType (id: UUID){
+        const verifyType = await this.orderTypeRepository.findOne({
+            where: {
+                id: id
+            }
+        });
+
+        if(verifyType){
+            return this.orderTypeRepository.delete({id});
+        } else {
+            throw new HttpException('OrderType to delete was not found.', 400);
+        }
+
+    };
+
+    async updateOrderType(id: UUID, orderType: UpdateOrderTypeDto){
+        const typeVerify = await this.orderTypeRepository.findOne({
+            where: {
+                id: id
+            }
+        });
+
+        if (typeVerify){
+            return this.orderTypeRepository.update({id}, orderType);
+        } else {
+            throw new HttpException('OrderType to update was not found.', 400);
+        }
+    }
+
 
     
 }
