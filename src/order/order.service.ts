@@ -48,6 +48,16 @@ export class OrderService {
     };
 
     async updateOrder(id: UUID, order: UpdateOrderDto){
+        const orderFound = await this.orderRepository.findOne({
+            where: {
+                id: id
+            }
+        });
 
+        if(orderFound){
+            return this.orderRepository.update({id}, order);
+        } else {
+            throw new HttpException('Order to update was not found.', 400);
+        };
     };
-}
+};

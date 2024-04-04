@@ -48,6 +48,16 @@ export class PaymentService {
     };
 
     async updatePayment(id: UUID, payment: UpdatePaymentDto){
+        const paymentFound = await this.paymentRepository.findOne({
+            where: {
+                id: id
+            }
+        });
 
+        if(paymentFound){
+            return this.paymentRepository.update({id}, payment);
+        } else {
+            throw new HttpException('Payment to update was not found.', 400);
+        };
     };
-}
+};
