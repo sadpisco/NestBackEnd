@@ -11,7 +11,8 @@ export class PaymentService {
     constructor (@InjectRepository(Payment) private paymentRepository: Repository <Payment>){}
 
     async createPayment(payment: CreatePaymentDto){
-
+        const newPayment = this.paymentRepository.create(payment);
+        return this.paymentRepository.save(newPayment);
     };
 
     getPayments(){
@@ -19,11 +20,31 @@ export class PaymentService {
     };
 
     async getPayment(id: UUID){
+        const verifyPayment = await this.paymentRepository.findOne({
+            where: {
+                id: id
+            }
+        });
 
+        if (verifyPayment){
+            return verifyPayment;
+        } else {
+            throw new HttpException('Payment was not found.', 400);
+        };
     };
 
     async deletePayment(id: UUID){
+        const paymentVerify = await this.paymentRepository.findOne({
+            where: {
+                id: id
+            }
+        });
 
+        if (paymentVerify){
+            return this.paymentRepository.delete({id});
+        } else {
+            throw new HttpException('Payment to delete was not found.', 400);
+        };
     };
 
     async updatePayment(id: UUID, payment: UpdatePaymentDto){
