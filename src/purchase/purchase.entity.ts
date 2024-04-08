@@ -1,6 +1,7 @@
 import { UUID } from "crypto";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Supplier } from "src/supplier/supplier.entity";
+import { Ingredient } from "src/ingredient/ingredient.entity";
 
 @Entity()
 
@@ -24,4 +25,8 @@ export class Purchase{
     @ManyToOne(() => Supplier, supplier => supplier.purchases)
     supplier: Supplier
 
+    //  @Column({ nullable: true})
+    //  ingredientId:UUID
+
+    //  @ManyToOne(() => Ingredient, ingredient => ingredient.purchases)
 }

@@ -26,7 +26,7 @@ export class PurchaseController {
 
     @Get(':id')
     getPurchase(@Param('id', ParseUUIDPipe) id: UUID){
-        return this.getPurchase(id);
+        return this.purchaseService.getPurchase(id);
     };
 
     @Put(':id')

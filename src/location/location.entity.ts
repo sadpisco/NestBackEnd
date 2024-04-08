@@ -22,13 +22,13 @@ export class Location{
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
     createat: Date
 
-    @Column()
+    @Column({nullable: false})
     cityId: UUID
 
     @ManyToOne( () => City, City => City.locations)
     city: City
 
-    @OneToMany( () => Supplier, supplier => supplier.location)
+    @OneToMany( () => Supplier, Supplier => Supplier.location)
     suppliers: Supplier[]
 
 }

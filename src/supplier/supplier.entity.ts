@@ -25,17 +25,15 @@ export class Supplier {
     @Column({ nullable: true})
     direccion: string
 
-    @Column()
-    locationId: UUID
-
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
     createdat: Date
 
-    @ManyToOne(() => Location, location => location.suppliers)
+    @Column()
+    locationId: UUID
+
+    @ManyToOne(() => Location, Location => Location.suppliers)
     location: Location
 
-    @OneToMany(() => Purchase, purchase => purchase.supplier)
+    @OneToMany(() => Purchase, Purchase => Purchase.supplier)
     purchases: Purchase[]
-
-
 }
