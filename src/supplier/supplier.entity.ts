@@ -31,9 +31,9 @@ export class Supplier {
     @Column()
     locationId: UUID
 
-    @ManyToOne(() => Location, Location => Location.suppliers)
+    @ManyToOne(() => Location, location => location.suppliers)
     location: Location
 
-    @OneToMany(() => Purchase, Purchase => Purchase.supplier)
+    @OneToMany(() => Purchase, purchase => purchase.supplier)
     purchases: Purchase[]
 }

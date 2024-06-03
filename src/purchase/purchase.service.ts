@@ -13,25 +13,34 @@ import { UpdatePurchaseDto } from './dto/UpdatePurchase.dto';
 export class PurchaseService {
     constructor(
         @InjectRepository(Purchase) private purchaseRepository: Repository <Purchase>,
-        // private supplierService: SupplierService,
+        private supplierService: SupplierService,
         // private ingredientService: IngredientService,
         // private productService: ProductService
     ){}
 
     async createPurchase(purchase: CreatePurchaseDto){
+        const supplierFound = await this.supplierService.getSupplier(purchase.supplierId);
+
+        if(!supplierFound){
+            return new HttpException('Proveedor no encontrado.', 400);
+        }
+
         const newPurchase = this.purchaseRepository.create(purchase);
         return this.purchaseRepository.save(newPurchase);
     };
 
     getPurchases(){
-        return this.purchaseRepository.find();
+        return this.purchaseRepository.find({
+            relations: ['supplier']
+        });
     };
 
     async getPurchase(id: UUID){
         const purchaseFound = await this.purchaseRepository.findOne({
             where: {
                 id: id
-            }
+            },
+            relations: ['supplier']
         });
 
         if (purchaseFound){
